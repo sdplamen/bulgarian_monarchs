@@ -1,33 +1,31 @@
 # Именник на българските владетели
 
 def add_king_by_year(name, year, kings):
-    if year not in kings[1]:
+    if year not in range(min((kings[1])), max(kings[1])):
 
         kings.insert(name)
         kings.insert(year)
         return kings
-    # years = []
-    # for key, value in kings.items():
-    #     if year in range(value[0], value[1]) if len(value) > 1 else (value[0] + 1):
-    #         years.append(key)
-    #         years.append(value)
+
 def find_king_by_year(year, kings):
-    if year in kings[1]:
-        return kings
+    if year in range(min((kings[1])), max(kings[1])):
+        return f'{kings[0]} has gouverned in {kings[1]} година'
+    return 'Bulgaria had had no such monarch in this period.'
 
 def find_king_by_name(name, kings):
     if name in kings[0]:
-        return kings
+        return f'{kings[0]} has gouverned in {kings[1]} година'
+    return 'Bulgaria had had no such monarch in this period.'
 
 kings = {
     # Прабългарски владетели
-    'Кан Авитохол, от рода Дуло': (145, 145 + 1),
-    'Кан Ирник, от рода Дуло': (437, 437 + 1),
-    'Кан Давид, от рода Дуло': (440, 440 + 1),
-    'Кан Астрахан, от рода Дуло': (450, 450 + 1),
-    'Кан Монолит, от рода Дуло': (460, 460 + 1),
-    'Кан Сандил, от рода Дуло': (558, 558 + 1),
-    'Кан Заберган, от рода Дуло': (570, 570 + 1),
+    'Кан Авитохол, от рода Дуло': (145, 145),
+    'Кан Ирник, от рода Дуло': (437, 437),
+    'Кан Давид, от рода Дуло': (440, 440),
+    'Кан Астрахан, от рода Дуло': (450, 450),
+    'Кан Монолит, от рода Дуло': (460, 460 ),
+    'Кан Сандил, от рода Дуло': (558, 558),
+    'Кан Заберган, от рода Дуло': (570, 570),
     'Хан Ювиги Кубрат, от рода Дуло': (584, 642),
 
     # Първо българско царство - Столица Плиска
@@ -37,7 +35,7 @@ kings = {
     'Велик Хан Севар, от рода Дуло': (738, 754),
     'Велик Хан Винех, от рода Укил': (754, 760),
     'Велик Хан Телец, от рода Угаин': (760, 763),
-    'Велик Хан Умор, от рода Укил': (766, 766 + 1),
+    'Велик Хан Умор, от рода Укил': (766, 766),
     'Велик Хан Токту, от рода Дуло': (766, 767),
     'Велик Хан Паган, от рода Дуло': (767, 768),
     'Велик Хан Телериг': (768, 777),
@@ -98,8 +96,3 @@ kings = {
 
 name = input('Type a name to search for the Bulgarian monarch : ')
 year = int(input('Type an year from 145 to 1946 to see the Bulgarian monarch : '))
-
-if year:
-    print(f'{years[0]} has gouverned in {years[1]} година')
-else:
-    print('Bulgaria had had no such monarch in this period.')
