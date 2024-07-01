@@ -1,16 +1,23 @@
 # Именник на българските владетели
 
-def bgKings(year):
-    years = []
-    for key, value in kings.items():
-        if year in range(value[0], value[1]) if len(value) > 1 else (value[0] + 1):
-            years.append(key)
-            years.append(value)
-    if years:
-        print(f'{years[0]} has gouverned in {years[1]} година')
-    else:
-        print('Bulgaria had had no such monarch in this period.')
+def add_king_by_year(name, year, kings):
+    if year not in kings[1]:
 
+        kings.insert(name)
+        kings.insert(year)
+        return kings
+    # years = []
+    # for key, value in kings.items():
+    #     if year in range(value[0], value[1]) if len(value) > 1 else (value[0] + 1):
+    #         years.append(key)
+    #         years.append(value)
+def find_king_by_year(year, kings):
+    if year in kings[1]:
+        return kings
+
+def find_king_by_name(name, kings):
+    if name in kings[0]:
+        return kings
 
 kings = {
     # Прабългарски владетели
@@ -88,6 +95,11 @@ kings = {
     'Цар Борис III': (1918, 1943),
     'Цар Симеон II': (1943, 1946),
 }
+
+name = input('Type a name to search for the Bulgarian monarch : ')
 year = int(input('Type an year from 145 to 1946 to see the Bulgarian monarch : '))
 
-bgKings(year)
+if year:
+    print(f'{years[0]} has gouverned in {years[1]} година')
+else:
+    print('Bulgaria had had no such monarch in this period.')
