@@ -7,15 +7,73 @@ def add_king_by_year(name, year, kings):
         kings.insert(year)
         return kings
 
+def add_king_by_name(name, year, kings):
+    if name not in kings[0]:
+
+        kings.insert(name)
+        kings.insert(year)
+        return kings
+
 def find_king_by_year(year, kings):
     if year in range(min((kings[1])), max(kings[1])):
-        return f'{kings[0]} has gouverned in {kings[1]} година'
+        return f'{kings[0]} has governed in {kings[1]} година'
     return 'Bulgaria had had no such monarch in this period.'
 
 def find_king_by_name(name, kings):
     if name in kings[0]:
-        return f'{kings[0]} has gouverned in {kings[1]} година'
+        return f'{kings[0]} has governed in {kings[1]} година'
     return 'Bulgaria had had no such monarch in this period.'
+
+def print_menu():
+    menu = '''
+    Task Manager Menu:
+    1. Добави владетел по име на царуване.
+    2. Добави владетел по година на царуване.
+    3. Потърси владетел по име на царуване.
+    4. Потърси владетел по година на царуване.
+    5. Изход.
+    '''
+    print(menu)
+
+def main():
+    tasks = []
+    while True:
+        print_menu()
+        choice = input('Enter your choice: ')
+        if choice == '1':
+            task = {
+                'id': int(input('Enter task ID: ')),
+                'description': input('Enter task description: '),
+                'priority': input('Enter task priority (low, medium, high): '),
+                'deadline': input('Enter task deadline (YYYY-MM-DD): '),
+                'completed': False
+            }
+            tasks = add_king_by_year(tasks, task)
+            print('Task added successfully.')
+        elif choice == '2':
+            task_id = int(input('Enter task ID to remove: '))
+            tasks = remove_task(tasks, task_id)
+            print('Task removed successfully.')
+        elif choice == '3':
+            task_id = int(input('Enter task ID to update: '))
+            updated_task = {
+                'description': input('Enter new task description: '),
+                'priority': input('Enter new task priority (low, medium, high): '),
+                'deadline': input('Enter new task deadline (YYYY-MM-DD): ')
+            }
+            tasks = update_task(tasks, task_id, updated_task)
+            print('Task updated successfully.')
+        elif choice == '4':
+            task_id = int(input('Enter task ID to get: '))
+            task = get_task(tasks, task_id)
+            print("Task details:", task)
+
+        elif choice == '5':
+            print('Излизане...')
+            break
+        else:
+            print('Невалиден избор. Опитай отново.')
+
 
 kings = {
     # Прабългарски владетели
