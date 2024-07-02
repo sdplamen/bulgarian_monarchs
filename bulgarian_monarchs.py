@@ -1,6 +1,6 @@
 # Именник на българските владетели
 
-def add_king(name, year, kings):
+def add_king(kings, name, year):
     if name not in kings[0]:
         name = kings[0]
         year = kings[1]
@@ -20,10 +20,10 @@ def find_king_by_name(kings, name):
 def print_menu():
     menu = '''
     Task Manager Menu:
-    1. Потърси владетел по година на царуване.
-    2. Потърси владетел по име.
-    3. Добави владетел по име и година на царуване.
-    4. Излизане...
+    1. Find the Bulgarian monarch by his year of government.
+    2. Find the Bulgarian monarch by his name.
+    3. Add a monarch if you found a omit.
+    4. Exiting...
     '''
     print(menu)
 
@@ -34,17 +34,15 @@ def main():
         choice = input('Enter your choice: ')
         if choice == '1':
             year = input('Type an year from 145 to 1946 to see the Bulgarian monarch : ')
-            tasks = find_king_by_year(tasks, year)
-            print('Task updated successfully.')
+            tasks = find_king_by_year(kings, year)
         elif choice == '2':
             name = input('Type a name to search for the Bulgarian monarch : ')
-            tasks = find_king_by_name(tasks, name)
-            print('Task removed successfully.')
+            tasks = find_king_by_name(kings, name)
         elif choice == '3':
             name = input('Enter the name of monarch: '),
             year = input('Enter the years in which he governed(start_year, end_year): ')
             tasks = add_king(tasks, name, year)
-            print(f'Monarch added successfully : {kings}.')
+            print(f'Monarch added successfully : {kings, name, year}.')
         elif choice == '4':
             print('Излизане...')
             break
