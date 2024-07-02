@@ -7,12 +7,12 @@ def add_king(kings, name, year):
         new_king = kings[name] = int(year)
         return kings[new_king]
 
-def find_king_by_year(kings, year):
+def find_king_by_year(year):
     if int(year) in range(min((kings[1])), max(kings[1])):
         return f'{kings[0]} has governed in {kings[1]} year'
     return 'Bulgaria had had no such monarch in this period.'
 
-def find_king_by_name(kings, name):
+def find_king_by_name(name):
     if name in kings[0]:
         return f'{kings[0]} has governed in {kings[1]} year'
     return 'Bulgaria had had no such monarch in this period.'
@@ -22,7 +22,7 @@ def print_menu():
     Task Manager Menu:
     1. Find the Bulgarian monarch by his year of government.
     2. Find the Bulgarian monarch by his name.
-    3. Add a monarch if you found a omit.
+    3. Add a monarch if you found an omit.
     4. Exiting...
     '''
     print(menu)
@@ -34,10 +34,10 @@ def main():
         choice = input('Enter your choice: ')
         if choice == '1':
             year = input('Type an year from 145 to 1946 to see the Bulgarian monarch : ')
-            tasks = find_king_by_year(kings, year)
+            find_king_by_year(year)
         elif choice == '2':
             name = input('Type a name to search for the Bulgarian monarch : ')
-            tasks = find_king_by_name(kings, name)
+            find_king_by_name(name)
         elif choice == '3':
             name = input('Enter the name of monarch: '),
             year = input('Enter the years in which he governed(start_year, end_year): ')
