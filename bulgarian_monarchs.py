@@ -9,12 +9,12 @@ def add_king(kings, name, year):
 
 def find_king_by_year(kings, year):
     if int(year) in range(min((kings[1])), max(kings[1])):
-        return f'{kings[0]} has governed in {kings[1]} година'
+        return f'{kings[0]} has governed in {kings[1]} year'
     return 'Bulgaria had had no such monarch in this period.'
 
 def find_king_by_name(kings, name):
     if name in kings[0]:
-        return f'{kings[0]} has governed in {kings[1]} година'
+        return f'{kings[0]} has governed in {kings[1]} year'
     return 'Bulgaria had had no such monarch in this period.'
 
 def print_menu():
