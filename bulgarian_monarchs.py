@@ -1,25 +1,18 @@
 # Именник на българските владетели
 
-def add_king_by_year(name, year, kings):
-    if year not in range(min((kings[1])), max(kings[1])):
-
-        kings.insert(name)
-        kings.insert(year)
-        return kings
-
-def add_king_by_name(name, year, kings):
+def add_king(name, year, kings):
     if name not in kings[0]:
+        name = kings[0]
+        year = kings[1]
+        new_king = kings[name] = int(year)
+        return kings[new_king]
 
-        kings.insert(name)
-        kings.insert(year)
-        return kings
-
-def find_king_by_year(year, kings):
-    if year in range(min((kings[1])), max(kings[1])):
+def find_king_by_year(kings, year):
+    if int(year) in range(min((kings[1])), max(kings[1])):
         return f'{kings[0]} has governed in {kings[1]} година'
     return 'Bulgaria had had no such monarch in this period.'
 
-def find_king_by_name(name, kings):
+def find_king_by_name(kings, name):
     if name in kings[0]:
         return f'{kings[0]} has governed in {kings[1]} година'
     return 'Bulgaria had had no such monarch in this period.'
@@ -27,48 +20,32 @@ def find_king_by_name(name, kings):
 def print_menu():
     menu = '''
     Task Manager Menu:
-    1. Добави владетел по име на царуване.
-    2. Добави владетел по година на царуване.
-    3. Потърси владетел по име на царуване.
-    4. Потърси владетел по година на царуване.
-    5. Изход.
+    1. Потърси владетел по година на царуване.
+    2. Потърси владетел по име.
+    3. Добави владетел по име и година на царуване.
+    4. Излизане...
     '''
     print(menu)
 
 def main():
-    tasks = []
+    tasks = ''
     while True:
         print_menu()
         choice = input('Enter your choice: ')
         if choice == '1':
-            task = {
-                'id': int(input('Enter task ID: ')),
-                'description': input('Enter task description: '),
-                'priority': input('Enter task priority (low, medium, high): '),
-                'deadline': input('Enter task deadline (YYYY-MM-DD): '),
-                'completed': False
-            }
-            tasks = add_king_by_year(tasks, task)
-            print('Task added successfully.')
+            year = input('Type an year from 145 to 1946 to see the Bulgarian monarch : ')
+            tasks = find_king_by_year(tasks, year)
+            print('Task updated successfully.')
         elif choice == '2':
-            task_id = int(input('Enter task ID to remove: '))
-            tasks = remove_task(tasks, task_id)
+            name = input('Type a name to search for the Bulgarian monarch : ')
+            tasks = find_king_by_name(tasks, name)
             print('Task removed successfully.')
         elif choice == '3':
-            task_id = int(input('Enter task ID to update: '))
-            updated_task = {
-                'description': input('Enter new task description: '),
-                'priority': input('Enter new task priority (low, medium, high): '),
-                'deadline': input('Enter new task deadline (YYYY-MM-DD): ')
-            }
-            tasks = update_task(tasks, task_id, updated_task)
-            print('Task updated successfully.')
+            name = input('Enter the name of monarch: '),
+            year = input('Enter the years in which he governed(start_year, end_year): ')
+            tasks = add_king(tasks, name, year)
+            print(f'Monarch added successfully : {kings}.')
         elif choice == '4':
-            task_id = int(input('Enter task ID to get: '))
-            task = get_task(tasks, task_id)
-            print("Task details:", task)
-
-        elif choice == '5':
             print('Излизане...')
             break
         else:
@@ -152,5 +129,5 @@ kings = {
     'Цар Симеон II': (1943, 1946),
 }
 
-name = input('Type a name to search for the Bulgarian monarch : ')
-year = int(input('Type an year from 145 to 1946 to see the Bulgarian monarch : '))
+if __name__ == '__main__':
+    main()
