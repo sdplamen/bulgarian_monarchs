@@ -1,21 +1,22 @@
 # Именник на българските владетели
 
-def add_king(kings, name, year):
-    if name not in kings[0]:
-        name = kings[0]
-        year = kings[1]
-        new_king = kings[name] = int(year)
-        return kings[new_king]
+def add_king(kings, name, start_year, end_year):
+    if name not in kings:
+        kings[name] = (start_year, end_year)
+        return 'Monarch added successfully.'
+    return 'Monarch already exists.'
 
-def find_king_by_year(year):
-    if int(year) in range(min((kings[1])), max(kings[1])):
-        return f'{kings[0]} has governed in {kings[1]} year'
+def find_king_by_year(kings, year):
+    for name, (start_year, end_year) in kings.values():
+        if start_year <= int(year) <= end_year:
+            return f'{name} has governed in {year}'
     return 'Bulgaria had had no such monarch in this period.'
 
-def find_king_by_name(name):
-    if name in kings[0]:
-        return f'{kings[0]} has governed in {kings[1]} year'
-    return 'Bulgaria had had no such monarch in this period.'
+def find_king_by_name(kings, name):
+    if name in kings.keys():
+        start_year, end_year = kings[name]
+        return f'{name} has governed from {start_year} to {end_year}'
+    return 'Bulgaria had had no such monarch with this name.'
 
 def print_menu():
     menu = '''
@@ -28,26 +29,28 @@ def print_menu():
     print(menu)
 
 def main():
-    tasks = ''
     while True:
         print_menu()
         choice = input('Enter your choice: ')
         if choice == '1':
             year = input('Type an year from 145 to 1946 to see the Bulgarian monarch : ')
-            find_king_by_year(year)
+            result = find_king_by_year(kings, year)
+            print(result)
         elif choice == '2':
             name = input('Type a name to search for the Bulgarian monarch : ')
-            find_king_by_name(name)
+            result = find_king_by_name(kings, name)
+            print(result)
         elif choice == '3':
-            name = input('Enter the name of monarch: '),
-            year = input('Enter the years in which he governed(start_year, end_year): ')
-            tasks = add_king(tasks, name, year)
-            print(f'Monarch added successfully : {kings, name, year}.')
+            name = input("Enter the name of the monarch: ")
+            start_year = int(input("Enter the start year of the reign: "))
+            end_year = int(input("Enter the end year of the reign: "))
+            result = add_king(kings, name, start_year, end_year)
+            print(result)
         elif choice == '4':
-            print('Излизане...')
+            print('Exiting...')
             break
         else:
-            print('Невалиден избор. Опитай отново.')
+            print('Invalid choice. Please try again.')
 
 
 kings = {
