@@ -24,7 +24,7 @@ def find_kingdom_capital(capitals, year):
     for (start, end), capital in capitals.items():
         if start <= year <= end:
             return f'In {start} to {end} Bulgaria was governed in {capital}.'
-    return f'There is no capital found for this year because of the {capital}.'
+    return f'There is no capital found for this year.'
 
 
 def print_menu():
@@ -79,7 +79,7 @@ capitals = {
 }
 
 monarchs = {
-    # Proto-Bulgarian rulers'
+    # Proto-Bulgarian rulers
     (145, 145): 'Кан Авитохол, от рода Дуло',
     (437, 437): 'Кан Ирник, от рода Дуло',
     (440, 440): 'Кан Давид, от рода Дуло',
