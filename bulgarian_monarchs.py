@@ -51,13 +51,13 @@ def main():
             result = find_monarch_by_name(monarchs, name)
             print(result)
         elif choice == '3':
-            name = input("Enter the name of the monarch: ")
-            start_year = int(input("Enter the start year of the reign: "))
-            end_year = int(input("Enter the end year of the reign: "))
+            name = input('Enter the name of the monarch : ')
+            start_year = int(input('Enter the start year of the government : '))
+            end_year = int(input('Enter the end year of the government : '))
             result = add_monarch(monarchs, name, start_year, end_year)
             print(result)
         elif choice == '4':
-            year = input('Type a year from 145 to 1946 to find the Bulgarian Kingdom capital: ')
+            year = input('Type a year from 145 to 1946 to find the Bulgarian Kingdom capital : ')
             result = find_kingdom_capital(capitals, year)
             print(result)
         elif choice == '5':
