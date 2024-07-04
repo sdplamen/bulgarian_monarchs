@@ -10,7 +10,7 @@ def find_monarch_by_year(monarchs, year):
     year = int(year)
     for (start, end), name in monarchs.items():
         if start <= year <= end:
-            return f'The monarch in {year} was {name}.'
+            return f'The monarch in {start} to {end} was {name}.'
     return 'Bulgaria had had no such monarch with this name.'
 
 def find_monarch_by_name(monarchs, name):
