@@ -2,7 +2,7 @@
 
 def add_monarch(monarchs, name, start_year, end_year):
     if (start_year, end_year) in monarchs:
-        return 'A monarch already exists for this period.'
+        return f'A monarch {name} already exists for this period.'
     monarchs[(start_year, end_year)] = name
     return f'Monarch {name} added for the period {start_year}-{end_year}.'
 
@@ -19,6 +19,13 @@ def find_monarch_by_name(monarchs, name):
         return '\n'.join(results)
     return 'Bulgaria had had no such monarch with this name.'
 
+def find_kingdom_capital(capitals, year):
+    year = int(year)
+    for (start, end), capital in capitals.items():
+        if start <= year <= end:
+            return f'In {start} to {end} Bulgaria was governed in {capital}.'
+    return f'There is no capital found for this year because of the {capital}.'
+
 
 def print_menu():
     menu = '''
@@ -26,7 +33,8 @@ def print_menu():
     1. Find the Bulgarian monarch by his year of government.
     2. Find the Bulgarian monarch by his name.
     3. Add a monarch if you found an omit.
-    4. Exiting...
+    4. FInd the capital of Bulgarian Kingdom by given year.
+    5. Exiting...
     '''
     print(menu)
 
@@ -49,14 +57,29 @@ def main():
             result = add_monarch(monarchs, name, start_year, end_year)
             print(result)
         elif choice == '4':
+            year = input('Type a year from 145 to 1946 to find the Bulgarian Kingdom capital: ')
+            result = find_kingdom_capital(capitals, year)
+            print(result)
+        elif choice == '5':
             print('Exiting...')
             break
         else:
             print('Invalid choice. Please try again.')
 
+capitals = {
+    (145, 642) : 'Proto-Bulgarian rulers, There is no exact capital',
+    (681, 893) : 'First Bulgarian Kingdom - capital Плиска',
+    (893, 970) : 'First Bulgarian Kingdom - capital Велики Преслав',
+    (971, 1018) : 'First Bulgarian Kingdom - capital Охрид',
+    (1018, 1185): 'There is no capital at this period, It\'s a Byzantine dominion',
+    (1185, 1371) : 'Second Bulgarian kingdom - capital Велико Търново',
+    (1371, 1396) : 'Second Bulgarian kingdom - capital Видин',
+    (1396, 1878): 'There is no capital at this period, It\'s a Ottoman Empire',
+    (1879, 1946): 'Third Bulgarian kingdom - capital София'
+}
 
 monarchs = {
-    # Proto-Bulgarian rulers
+    # Proto-Bulgarian rulers'
     (145, 145): 'Кан Авитохол, от рода Дуло',
     (437, 437): 'Кан Ирник, от рода Дуло',
     (440, 440): 'Кан Давид, от рода Дуло',
