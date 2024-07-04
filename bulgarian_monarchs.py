@@ -6,6 +6,7 @@ def add_monarch(monarchs, name, start_year, end_year):
     monarchs[(start_year, end_year)] = name
     return f'Monarch {name} added for the period {start_year}-{end_year}.'
 
+
 def find_monarch_by_year(monarchs, year):
     year = int(year)
     for (start, end), name in monarchs.items():
@@ -13,11 +14,14 @@ def find_monarch_by_year(monarchs, year):
             return f'The monarch in {start} to {end} was {name}.'
     return 'Bulgaria had had no such monarch with this name.'
 
+
 def find_monarch_by_name(monarchs, name):
-    results = [f'In {start} to {end} has governed {monarch_name}' for (start, end), monarch_name in monarchs.items() if name in monarch_name]
+    results = [f'In {start} to {end} has governed {monarch_name}' for (start, end), monarch_name in monarchs.items() if
+               name in monarch_name]
     if results:
         return '\n'.join(results)
     return 'Bulgaria had had no such monarch with this name.'
+
 
 def find_kingdom_capital(capitals, year):
     year = int(year)
@@ -37,6 +41,7 @@ def print_menu():
     5. Exiting...
     '''
     print(menu)
+
 
 def main():
     while True:
@@ -66,14 +71,15 @@ def main():
         else:
             print('Invalid choice. Please try again.')
 
+
 capitals = {
-    (145, 642) : 'Proto-Bulgarian rulers, There is no exact capital',
-    (681, 893) : 'First Bulgarian Kingdom - capital Плиска',
-    (893, 970) : 'First Bulgarian Kingdom - capital Велики Преслав',
-    (971, 1018) : 'First Bulgarian Kingdom - capital Охрид',
+    (145, 642): 'Proto-Bulgarian rulers, There is no exact capital',
+    (681, 893): 'First Bulgarian Kingdom - capital Плиска',
+    (893, 970): 'First Bulgarian Kingdom - capital Велики Преслав',
+    (971, 1018): 'First Bulgarian Kingdom - capital Охрид',
     (1018, 1185): 'a Byzantine dominion. There is no capital at this period',
-    (1185, 1371) : 'Second Bulgarian kingdom - capital Велико Търново',
-    (1371, 1396) : 'Second Bulgarian kingdom - capital Видин',
+    (1185, 1371): 'Second Bulgarian kingdom - capital Велико Търново',
+    (1371, 1396): 'Second Bulgarian kingdom - capital Видин',
     (1396, 1878): 'a Ottoman Empire. There is no capital at this period',
     (1879, 1946): 'Third Bulgarian kingdom - capital София'
 }
