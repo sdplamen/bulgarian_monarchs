@@ -71,10 +71,10 @@ capitals = {
     (681, 893) : 'First Bulgarian Kingdom - capital Плиска',
     (893, 970) : 'First Bulgarian Kingdom - capital Велики Преслав',
     (971, 1018) : 'First Bulgarian Kingdom - capital Охрид',
-    (1018, 1185): 'There is no capital at this period, It\'s a Byzantine dominion',
+    (1018, 1185): 'a Byzantine dominion. There is no capital at this period',
     (1185, 1371) : 'Second Bulgarian kingdom - capital Велико Търново',
     (1371, 1396) : 'Second Bulgarian kingdom - capital Видин',
-    (1396, 1878): 'There is no capital at this period, It\'s a Ottoman Empire',
+    (1396, 1878): 'a Ottoman Empire. There is no capital at this period',
     (1879, 1946): 'Third Bulgarian kingdom - capital София'
 }
 
