@@ -38,7 +38,7 @@ def print_menu():
     2. Find the Bulgarian monarch by his name.
     3. Add a monarch if you found an omit.
     4. FInd the capital of Bulgarian Kingdom by given year.
-    5. Exiting...
+    5. Exit.
     '''
     print(menu)
 
