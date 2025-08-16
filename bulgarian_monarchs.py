@@ -151,7 +151,7 @@ monarchs = {
 
     # Second Bulgarian kingdom - capital Видин
     (1371, 1393): 'Цар Иван Шишман',
-    (1371, 1369): 'Цар Страцимир',
+    (1371, 1396): 'Цар Страцимир',
     (1396, 1878): 'Османско владичество',
 
     # Third Bulgarian kingdom- capital София
