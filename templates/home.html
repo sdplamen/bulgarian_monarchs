@@ -2,12 +2,11 @@
 {% block title %}Home | Bulgarian Rulers{% endblock %}
 {% block content %}
 <h2>Welcome to Bulgarian Rulers</h2>
-<p>Explore the history of Bulgarian monarchs and capitals. Use the forms below to search for monarchs by year or name, add a new monarch, or find the capital for a specific year.</p>
+<p>Explore the history of Bulgarian monarchs and capitals. Use the forms below to search for monarchs by year or name, find the capital for a specific year or add a new monarch,.</p>
 
 <section>
     <h3>Find Monarch by Year</h3>
-    <form method="post">
-        {% csrf_token %}
+    <form>
         <label for="year_by_year">Enter a year (145-1946):</label>
         <input type="text" id="year_by_year" name="year" placeholder="e.g., 893" required>
         <button type="submit" name="find_monarch_by_year">Search</button>
@@ -19,8 +18,7 @@
 
 <section>
     <h3>Find Monarch by Name</h3>
-    <form method="post">
-        {% csrf_token %}
+    <form>
         <label for="name_by_name">Enter monarch name:</label>
         <input type="text" id="name_by_name" name="name" placeholder="e.g., Симеон" required>
         <button type="submit" name="find_monarch_by_name">Search</button>
@@ -31,6 +29,18 @@
                 <p>{{ result }}</p>
             {% endfor %}
         </div>
+    {% endif %}
+</section>
+
+<section>
+    <h3>Find Capital by Year</h3>
+    <form>
+        <label for="year_by_capital">Enter a year (145-1946):</label>
+        <input type="text" id="year_by_capital" name="year" placeholder="e.g., 1879" required>
+        <button type="submit" name="find_capital_by_year">Search</button>
+    </form>
+    {% if capital_by_year_result %}
+        <div class="result">{{ capital_by_year_result }}</div>
     {% endif %}
 </section>
 
@@ -51,16 +61,4 @@
     {% endif %}
 </section>
 
-<section>
-    <h3>Find Capital by Year</h3>
-    <form method="post">
-        {% csrf_token %}
-        <label for="year_by_capital">Enter a year (145-1946):</label>
-        <input type="text" id="year_by_capital" name="year" placeholder="e.g., 1879" required>
-        <button type="submit" name="find_capital_by_year">Search</button>
-    </form>
-    {% if capital_by_year_result %}
-        <div class="result">{{ capital_by_year_result }}</div>
-    {% endif %}
-</section>
 {% endblock %}
