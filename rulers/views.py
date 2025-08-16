@@ -18,7 +18,7 @@ def home(request):
                 monarch_by_year_result = f'The monarch in {monarch.start_year} to {monarch.end_year} was {monarch.name}. Governed from {capital_name}.'
             else:
                 monarch_by_year_result = 'Bulgaria had no such monarch for this year.'
-        except (ValueError, TypeError): # Added TypeError to catch cases where `year` might still be None after .get() if it's missing entirely
+        except (ValueError, TypeError):
             monarch_by_year_result = 'Please enter a valid year.'
 
     elif 'find_monarch_by_name' in request.GET:
@@ -41,10 +41,10 @@ def home(request):
                 capital_by_year_result = f'In {capital.start_year} to {capital.end_year} Bulgaria was governed in {capital.name}.'
             else:
                 capital_by_year_result = f'There is no capital found for this year.'
-        except (ValueError, TypeError): # Added TypeError
+        except (ValueError, TypeError):
             capital_by_year_result = 'Please enter a valid year.'
 
-    elif 'add_monarch' in request.POST: # This block correctly uses request.POST
+    elif 'add_monarch' in request.POST:
         name = request.POST.get('name')
         start_year = request.POST.get('start_year')
         end_year = request.POST.get('end_year')
