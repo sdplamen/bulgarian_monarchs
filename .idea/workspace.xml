@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5875d8d-7fcd-4acd-bea7-444424eaff3a" name="Changes" comment="Update code." />
+    <list default="true" id="b5875d8d-7fcd-4acd-bea7-444424eaff3a" name="Changes" comment="Update code.">
+      <change beforePath="$PROJECT_DIR$/.idea/bulgarian_monarchs.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/bulgarian_monarchs.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/bulgarian_monarchs/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulgarian_monarchs/settings.py" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -54,7 +58,7 @@
     &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
     &quot;git-widget-placeholder&quot;: &quot;main&quot;,
     &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/plamen/Documents/bulgarian_monarches&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/Users/plamen/Documents/bulgarian_monarchs&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
@@ -197,6 +201,9 @@
       <workItem from="1756979455355" duration="24000" />
       <workItem from="1756979594891" duration="4000" />
       <workItem from="1756979605577" duration="1465000" />
+      <workItem from="1756981286064" duration="1181000" />
+      <workItem from="1756982493769" duration="285000" />
+      <workItem from="1756982820107" duration="355000" />
     </task>
     <task id="LOCAL-00001" summary="Initial code">
       <option name="closed" value="true" />
