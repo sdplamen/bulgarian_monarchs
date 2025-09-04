@@ -44,21 +44,21 @@
     {% endif %}
 </section>
 
-<section>
-    <h3>Add a Monarch</h3>
-    <form method="post">
-        {% csrf_token %}
-        <label for="name_add">Monarch Name:</label>
-        <input type="text" id="name_add" name="name" placeholder="e.g., Цар Иван" required><br>
-        <label for="start_year_add">Start Year:</label>
-        <input type="number" id="start_year_add" name="start_year" placeholder="e.g., 145" min="145" max="1946" required><br>
-        <label for="end_year_add">End Year:</label>
-        <input type="number" id="end_year_add" name="end_year" placeholder="e.g., 1946" min="145" max="1946" required><br>
-        <button type="submit" name="add_monarch">Add Monarch</button>
-    </form>
-    {% if add_monarch_result %}
-        <div class="result">{{ add_monarch_result }}</div>
-    {% endif %}
-</section>
+<!--<section>-->
+<!--    <h3>Add a Monarch</h3>-->
+<!--    <form method="post">-->
+<!--        {% csrf_token %}-->
+<!--        <label for="name_add">Monarch Name:</label>-->
+<!--        <input type="text" id="name_add" name="name" placeholder="e.g., Цар Иван" required><br>-->
+<!--        <label for="start_year_add">Start Year:</label>-->
+<!--        <input type="number" id="start_year_add" name="start_year" placeholder="e.g., 145" min="145" max="1946" required><br>-->
+<!--        <label for="end_year_add">End Year:</label>-->
+<!--        <input type="number" id="end_year_add" name="end_year" placeholder="e.g., 1946" min="145" max="1946" required><br>-->
+<!--        <button type="submit" name="add_monarch">Add Monarch</button>-->
+<!--    </form>-->
+<!--    {% if add_monarch_result %}-->
+<!--        <div class="result">{{ add_monarch_result }}</div>-->
+<!--    {% endif %}-->
+<!--</section>-->
 
 {% endblock %}
