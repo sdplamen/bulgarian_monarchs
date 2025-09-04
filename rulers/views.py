@@ -44,24 +44,24 @@ def home(request):
         except (ValueError, TypeError):
             capital_by_year_result = 'Please enter a valid year.'
 
-    # elif 'add_monarch' in request.POST:
-    #     name = request.POST.get('name')
-    #     start_year = request.POST.get('start_year')
-    #     end_year = request.POST.get('end_year')
-    #     try:
-    #         start_year = int(start_year)
-    #         end_year = int(end_year)
-    #         if Monarch.objects.filter(start_year=start_year, end_year=end_year).exists():
-    #             add_monarch_result = f'A monarch already exists for this period.'
-    #         else:
-    #             capital = Capital.objects.filter(start_year__lte=start_year, end_year__gte=end_year).first()
-    #             if not capital:
-    #                 add_monarch_result = 'No suitable capital found for this period.'
-    #             else:
-    #                 monarch = Monarch.objects.create(name=name, start_year=start_year, end_year=end_year, capital=capital)
-    #                 add_monarch_result = f'Monarch {name} added for the period {start_year}-{end_year}. Assigned to capital {capital.name}.'
-    #     except ValueError:
-    #         add_monarch_result = 'Please enter valid years.'
+    elif 'add_monarch' in request.POST:
+        name = request.POST.get('name')
+        start_year = request.POST.get('start_year')
+        end_year = request.POST.get('end_year')
+        try:
+            start_year = int(start_year)
+            end_year = int(end_year)
+            if Monarch.objects.filter(start_year=start_year, end_year=end_year).exists():
+                add_monarch_result = f'A monarch already exists for this period.'
+            else:
+                capital = Capital.objects.filter(start_year__lte=start_year, end_year__gte=end_year).first()
+                if not capital:
+                    add_monarch_result = 'No suitable capital found for this period.'
+                else:
+                    monarch = Monarch.objects.create(name=name, start_year=start_year, end_year=end_year, capital=capital)
+                    add_monarch_result = f'Monarch {name} added for the period {start_year}-{end_year}. Assigned to capital {capital.name}.'
+        except ValueError:
+            add_monarch_result = 'Please enter valid years.'
 
     context = {
         'monarch_by_year_result': monarch_by_year_result,
