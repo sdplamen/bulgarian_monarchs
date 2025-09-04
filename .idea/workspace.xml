@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b5875d8d-7fcd-4acd-bea7-444424eaff3a" name="Changes" comment="Update code.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bulgarian_monarches/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/bulgarian_monarches/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/home.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/home.html" afterDir="false" />
-    </list>
+    <list default="true" id="b5875d8d-7fcd-4acd-bea7-444424eaff3a" name="Changes" comment="Update code." />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -176,7 +172,7 @@
       <workItem from="1756898025568" duration="228000" />
       <workItem from="1756979455355" duration="24000" />
       <workItem from="1756979594891" duration="4000" />
-      <workItem from="1756979605577" duration="778000" />
+      <workItem from="1756979605577" duration="1153000" />
     </task>
     <task id="LOCAL-00001" summary="Initial code">
       <option name="closed" value="true" />
