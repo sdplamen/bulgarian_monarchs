@@ -1,5 +1,5 @@
 """
-URL configuration for bulgarian_monarches project.
+URL configuration for bulgarian_monarchs project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
