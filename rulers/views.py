@@ -5,6 +5,7 @@ from rulers.models import Monarch, Capital
 def home(request):
     monarch_by_year_result = None
     monarch_by_name_results = []
+    family_by_name_results = []
     add_monarch_result = None
     capital_by_year_result = None
 
@@ -14,23 +15,23 @@ def home(request):
             year = int(year)
             monarch = Monarch.objects.filter(start_year__lte=year, end_year__gte=year).first()
             if monarch:
-                capital_name = monarch.capital.name if monarch.capital else 'No capital assigned'
-                monarch_by_year_result = f'The monarch in {monarch.start_year} to {monarch.end_year} was {monarch.name}. Governed from {capital_name}.'
+                capital_name = monarch.capital.name if monarch.capital else 'неизвестна столица'
+                monarch_by_year_result = f'Владетелят от {monarch.start_year} до {monarch.end_year} бил {monarch.name} {monarch.family if monarch.family else ''}. Управлявал от {capital_name}.'
             else:
-                monarch_by_year_result = 'Bulgaria had no such monarch for this year.'
+                monarch_by_year_result = 'България не е имала владетел през този период.'
         except (ValueError, TypeError):
-            monarch_by_year_result = 'Please enter a valid year.'
+            monarch_by_year_result = 'Моля, въведи правилна година.'
 
     elif 'find_monarch_by_name' in request.GET:
         name = request.GET.get('name')
         monarchs = Monarch.objects.filter(name__icontains=name)
         if monarchs.exists():
             monarch_by_name_results = [
-                f'In {monarch.start_year} to {monarch.end_year} has governed {monarch.name}. Governed from {monarch.capital.name if monarch.capital else "No capital assigned"}.'
+                f'През {monarch.start_year} до {monarch.end_year} управлянал {monarch.name} {monarch.family if monarch.family else ''}. Управлявал от {monarch.capital.name if monarch.capital else 'неизвестна столиза'}.'
                 for monarch in monarchs
             ]
         else:
-            monarch_by_name_results = ['Bulgaria had no such monarch with this name.']
+            monarch_by_name_results = ['България не е имала владетел през този период']
 
     elif 'find_capital_by_year' in request.GET:
         year = request.GET.get('year')
@@ -38,34 +39,36 @@ def home(request):
             year = int(year)
             capital = Capital.objects.filter(start_year__lte=year, end_year__gte=year).first()
             if capital:
-                capital_by_year_result = f'In {capital.start_year} to {capital.end_year} Bulgaria was governed in {capital.name}.'
+                capital_by_year_result = f'През {capital.start_year} до {capital.end_year} България е управлявана от {capital.name}.'
             else:
-                capital_by_year_result = f'There is no capital found for this year.'
+                capital_by_year_result = f'Няма известна столица през тази година.'
         except (ValueError, TypeError):
-            capital_by_year_result = 'Please enter a valid year.'
+            capital_by_year_result = 'Моля, въведи правилна година.'
 
     elif 'add_monarch' in request.POST:
         name = request.POST.get('name')
+        family = request.POST.get('family')
         start_year = request.POST.get('start_year')
         end_year = request.POST.get('end_year')
         try:
             start_year = int(start_year)
             end_year = int(end_year)
             if Monarch.objects.filter(start_year=start_year, end_year=end_year).exists():
-                add_monarch_result = f'A monarch already exists for this period.'
+                add_monarch_result = f'Вече съществува владетел за този период.'
             else:
                 capital = Capital.objects.filter(start_year__lte=start_year, end_year__gte=end_year).first()
                 if not capital:
-                    add_monarch_result = 'No suitable capital found for this period.'
+                    add_monarch_result = 'Няма съответна столица през този период.'
                 else:
-                    monarch = Monarch.objects.create(name=name, start_year=start_year, end_year=end_year, capital=capital)
-                    add_monarch_result = f'Monarch {name} added for the period {start_year}-{end_year}. Assigned to capital {capital.name}.'
+                    monarch = Monarch.objects.create(name=name, family=family, start_year=start_year, end_year=end_year, capital=capital)
+                    add_monarch_result = f'Владетелят {name} {family} е добавен за периода {start_year}-{end_year}. Със столица на царуване {capital.name}.'
         except ValueError:
-            add_monarch_result = 'Please enter valid years.'
+            add_monarch_result = 'Моля, въведи правилна година.'
 
     context = {
         'monarch_by_year_result': monarch_by_year_result,
         'monarch_by_name_results': monarch_by_name_results,
+        'family_by_name_results': family_by_name_results,
         'add_monarch_result': add_monarch_result,
         'capital_by_year_result': capital_by_year_result,
     }

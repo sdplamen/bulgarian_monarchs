@@ -14,6 +14,7 @@ class Capital(models.Model):
 
 class Monarch(models.Model):
     name = models.CharField(max_length=200)
+    family = models.CharField(max_length=200, null=True, blank=True)
     start_year = models.IntegerField()
     end_year = models.IntegerField()
     capital = models.ForeignKey(Capital, on_delete=models.SET_NULL, null=True, related_name='monarchs')

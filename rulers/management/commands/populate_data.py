@@ -4,15 +4,15 @@ from rulers.models import Monarch, Capital
 class Command(BaseCommand):
     def handle(self, *args, **kwargs): 
         capitals_data = [
-            {'name': 'Proto-Bulgarian rulers, There is no exact capital', 'start_year': 145, 'end_year': 642},
-            {'name': 'First Bulgarian Kingdom - capital Плиска', 'start_year': 681, 'end_year': 893},
-            {'name': 'First Bulgarian Kingdom - capital Велики Преслав', 'start_year': 893, 'end_year': 970},
-            {'name': 'First Bulgarian Kingdom - capital Охрид', 'start_year': 971, 'end_year': 1018},
-            {'name': 'a Byzantine dominion. There is no capital at this period', 'start_year': 1018, 'end_year': 1185},
-            {'name': 'Second Bulgarian kingdom - capital Велико Търново', 'start_year': 1185, 'end_year': 1371},
-            {'name': 'Second Bulgarian kingdom - capital Видин', 'start_year': 1371, 'end_year': 1396},
-            {'name': 'a Ottoman Empire. There is no capital at this period', 'start_year': 1396, 'end_year': 1878},
-            {'name': 'Third Bulgarian kingdom - capital София', 'start_year': 1879, 'end_year': 1946},
+            {'name': 'Прабългарски владетели, Няма точна столица', 'start_year': 145, 'end_year': 642},
+            {'name': 'Първо българско царство - столица Плиска', 'start_year': 681, 'end_year': 893},
+            {'name': 'Първо българско царство - столица Велики Преслав', 'start_year': 893, 'end_year': 970},
+            {'name': 'Първо българско царство - столица Охрид', 'start_year': 971, 'end_year': 1018},
+            {'name': 'Византийско владичество. Няма столица през този период', 'start_year': 1018, 'end_year': 1185},
+            {'name': 'Второ българско царство - столица Велико Търново', 'start_year': 1185, 'end_year': 1371},
+            {'name': 'Второ българско царство - столица Видин', 'start_year': 1371, 'end_year': 1396},
+            {'name': 'Османска империя. Няма столица през този период', 'start_year': 1396, 'end_year': 1878},
+            {'name': 'Трето българско царство - столица София', 'start_year': 1879, 'end_year': 1946},
         ]
 
         monarchs_data = [
@@ -60,40 +60,40 @@ class Command(BaseCommand):
             {'name': 'Византийско владичество', 'start_year': 1018, 'end_year': 1185},
 
             # Second Bulgarian kingdom - capital Велико Търново
-            {'name': 'Цар Теодор-Петър II (Делян), брат Асен', 'start_year': 1185, 'end_year': 1187},
-            {'name': 'Цар Асен I', 'start_year': 1187, 'end_year': 1196},
-            {'name': 'Цар Теодор-Петър II (Делян), брат Асен', 'start_year': 1196, 'end_year': 1197},
-            {'name': 'Цар Калоян, получава титлата крал от папа Инокентий III', 'start_year': 1197, 'end_year': 1207},
-            {'name': 'Цар Борил, сестрин син на Асеновци', 'start_year': 1207, 'end_year': 1218},
-            {'name': 'Цар Иван Асен II, син на цар Асен I', 'start_year': 1218, 'end_year': 1241},
-            {'name': 'Цар Коломан I Асен, син на Иван Асен II', 'start_year': 1241, 'end_year': 1246},
-            {'name': 'Цар Михаил II Асен, син на Иван Асен II от брака му с Ирина Комнина', 'start_year': 1246, 'end_year': 1256},
-            {'name': 'Цар Коломан II', 'start_year': 1256, 'end_year': 1256},
-            {'name': 'Цар Мицо Асен, зет на Иван Асен II', 'start_year': 1256, 'end_year': 1257},
-            {'name': 'Цар Константин Асен, болярин от Скопие', 'start_year': 1257, 'end_year': 1277},
-            {'name': 'Цар Ивайло, завзема престола от цар Константин Тих', 'start_year': 1277, 'end_year': 1279},
-            {'name': 'Цар Иван Асен III, внук на Иван Асен II', 'start_year': 1279, 'end_year': 1280},
-            {'name': 'Цар Георги I Тертер, от кумански произход. Стратег на крепостта Червен', 'start_year': 1280, 'end_year': 1292},
-            {'name': 'Цар Смилец, поставен от хан Ногай', 'start_year': 1292, 'end_year': 1298},
-            {'name': 'Узурпатор Чака, син на хан Ногай и зет на цар Георги Тертер I', 'start_year': 1299, 'end_year': 1299},
-            {'name': 'Цар Теодор-Светослав Тертер, син на Георги Тертет I', 'start_year': 1300, 'end_year': 1321},
-            {'name': 'Цар Георги II Тертер', 'start_year': 1321, 'end_year': 1323},
-            {'name': 'Цар Михаил III Шишман, видински деспот', 'start_year': 1323, 'end_year': 1330},
-            {'name': 'Цар Иван Стефан', 'start_year': 1330, 'end_year': 1331},
-            {'name': 'Цар Иван Александър I, деспот от Ловеч, син на деспот Срацимир', 'start_year': 1331, 'end_year': 1371},
+            {'name': 'Цар Теодор-Петър II (Делян)', 'family': 'брат Асен', 'start_year': 1185, 'end_year': 1187},
+            {'name': 'Цар Асен I', 'family': '', 'start_year': 1187, 'end_year': 1196},
+            {'name': 'Цар Теодор-Петър II (Делян)', 'family': 'брат Асен', 'start_year': 1196, 'end_year': 1197},
+            {'name': 'Цар Калоян, получава титлата крал от папа Инокентий III', 'family': '', 'start_year': 1197, 'end_year': 1207},
+            {'name': 'Цар Борил', 'family': 'сестрин син на Асеновци', 'start_year': 1207, 'end_year': 1218},
+            {'name': 'Цар Иван Асен II', 'family': 'син на цар Асен I', 'start_year': 1218, 'end_year': 1241},
+            {'name': 'Цар Коломан I Асен', 'family': 'син на Иван Асен II', 'start_year': 1241, 'end_year': 1246},
+            {'name': 'Цар Михаил II Асен', 'family': 'син на Иван Асен II от брака му с Ирина Комнина', 'start_year': 1246, 'end_year': 1256},
+            {'name': 'Цар Коломан II', 'family': '', 'start_year': 1256, 'end_year': 1256},
+            {'name': 'Цар Мицо Асен', 'family': 'зет на Иван Асен II', 'start_year': 1256, 'end_year': 1257},
+            {'name': 'Цар Константин Асен,', 'family': 'болярин от Скопие', 'start_year': 1257, 'end_year': 1277},
+            {'name': 'Цар Ивайло', 'family': 'завзема престола от цар Константин Тих', 'start_year': 1277, 'end_year': 1279},
+            {'name': 'Цар Иван Асен III', 'family': 'внук на Иван Асен II', 'start_year': 1279, 'end_year': 1280},
+            {'name': 'Цар Георги I Тертер', 'family': 'от кумански произход. Стратег на крепостта Червен', 'start_year': 1280, 'end_year': 1292},
+            {'name': 'Цар Смилец', 'family': 'поставен от хан Ногай', 'start_year': 1292, 'end_year': 1298},
+            {'name': 'Узурпатор Чака', 'family': 'син на хан Ногай и зет на цар Георги Тертер I', 'start_year': 1299, 'end_year': 1299},
+            {'name': 'Цар Теодор-Светослав Тертер', 'family': 'син на Георги Тертет I', 'start_year': 1300, 'end_year': 1321},
+            {'name': 'Цар Георги II Тертер', 'family': '', 'start_year': 1321, 'end_year': 1323},
+            {'name': 'Цар Михаил III Шишман, видински деспот', 'family': '', 'start_year': 1323, 'end_year': 1330},
+            {'name': 'Цар Иван Стефан', 'family': '', 'start_year': 1330, 'end_year': 1331},
+            {'name': 'Цар Иван Александър I, деспот от Ловеч', 'family': 'син на деспот Срацимир', 'start_year': 1331, 'end_year': 1371},
 
             # Second Bulgarian kingdom - capital Видин
-            {'name': 'Цар Иван Шишман', 'start_year': 1371, 'end_year': 1393},
-            {'name': 'Цар Страцимир', 'start_year': 1371, 'end_year': 1396},
+            {'name': 'Цар Иван Шишман', 'family': '', 'start_year': 1371, 'end_year': 1393},
+            {'name': 'Цар Страцимир', 'family': '', 'start_year': 1371, 'end_year': 1396},
 
             # Ottoman dominion
-            {'name': 'Османско владичество', 'start_year': 1396, 'end_year': 1878},
+            {'name': 'Османско владичество', 'family': '', 'start_year': 1396, 'end_year': 1878},
 
             # Third Bulgarian kingdom - capital София
-            {'name': 'Княз Александър II Батемберг', 'start_year': 1879, 'end_year': 1887},
-            {'name': 'Цар Фердинанд I', 'start_year': 1887, 'end_year': 1918},
-            {'name': 'Цар Борис III', 'start_year': 1918, 'end_year': 1943},
-            {'name': 'Цар Симеон II', 'start_year': 1943, 'end_year': 1946},
+            {'name': 'Княз Александър I Батемберг', 'family': '', 'start_year': 1879, 'end_year': 1887},
+            {'name': 'Цар Фердинанд I', 'family': '', 'start_year': 1887, 'end_year': 1918},
+            {'name': 'Цар Борис III', 'family': 'син на Цар Фердинанд I', 'start_year': 1918, 'end_year': 1943},
+            {'name': 'Цар Симеон II', 'family': 'син на Цар Борис III', 'start_year': 1943, 'end_year': 1946},
         ]
 
         # Create capitals first

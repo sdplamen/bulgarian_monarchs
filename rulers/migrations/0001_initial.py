@@ -29,6 +29,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
                 ('name', models.CharField(max_length=200)),
+                ('family', models.CharField(max_length=200, null=True, blank=True)),
                 ('start_year', models.IntegerField()),
                 ('end_year', models.IntegerField()),
                 ('capital', models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='monarchs', to='rulers.capital')),

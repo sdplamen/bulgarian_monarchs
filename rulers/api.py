@@ -8,13 +8,13 @@ from rulers.serializers import MonarchSerializer, CapitalSerializer
 
 class MonarchByYearView(APIView):
     @extend_schema(
-        description="Retrieve the monarch who ruled Bulgaria in a specific year.",
+        description='Търсене на владетел, който е упранлянал през конкретна година.',
         parameters=[
             OpenApiParameter(
                 'year',
                 OpenApiTypes.INT,
                 location=OpenApiParameter.QUERY,
-                description="Year to search for a monarch"
+                description='Година за търсене по владетел'
             )
         ],
         responses={
@@ -25,8 +25,8 @@ class MonarchByYearView(APIView):
                     'data': MonarchSerializer(), # This is a serializer instance because it's a field within the inline_serializer
                 }
             ),
-            400: {'description': "Invalid year provided"},
-            404: {'description': "No monarch found for the year"}
+            400: {'description': 'Неправилно въведена година'},
+            404: {'description': 'Няма намерен владетел за тази година'}
         }
     )
     def get(self, request):
@@ -37,24 +37,24 @@ class MonarchByYearView(APIView):
             if monarch:
                 serializer = MonarchSerializer(monarch)
                 return Response({
-                    'message': f'The monarch in {monarch.start_year} to {monarch.end_year} was {monarch.name}. '
-                               f'Governed from {monarch.capital.name if monarch.capital else "No capital assigned"}.',
+                    'message': f'Владетел през {monarch.start_year} до {monarch.end_year} бил {monarch.name} {monarch.family if monarch.family else ''}. '
+                               f'Управлявал от {monarch.capital.name if monarch.capital else 'няма известна столица'}.',
                     'data': serializer.data
                 }, status=status.HTTP_200_OK)
-            return Response({'message': 'Bulgaria had no such monarch for this year.'},
+            return Response({'message': 'България няма такъв владетел през тази година.'},
                             status=status.HTTP_404_NOT_FOUND)
         except (ValueError, TypeError):
-            return Response({'message': 'Please enter a valid year.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': 'Моля, въведи правилна година.'}, status=status.HTTP_400_BAD_REQUEST)
 
 class MonarchByNameView(APIView):
     @extend_schema(
-        description="Search for monarchs by name (case-insensitive).",
+        description="Търсене на врадетел по име (case-insensitive).",
         parameters=[
             OpenApiParameter(
                 'name',
                 OpenApiTypes.STR,
                 location=OpenApiParameter.QUERY,
-                description="Name or partial name of the monarch"
+                description="Име или част от име на владетеля"
             )
         ],
         responses={
@@ -65,35 +65,35 @@ class MonarchByNameView(APIView):
                     'data': MonarchSerializer(many=True), # Instance for a list of serializers
                 }
             ),
-            400: {'description': "Name parameter missing"},
-            404: {'description': "No monarchs found with the given name"}
+            400: {'description': 'Липсващи данни за име'},
+            404: {'description': "Няма намерен монарх с такова име"}
         }
     )
     def get(self, request):
         name = request.query_params.get('name')
         if not name:
-            return Response({'message': 'Please provide a name.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': 'моля, въведи име.'}, status=status.HTTP_400_BAD_REQUEST)
 
         monarchs = Monarch.objects.filter(name__icontains=name)
         if monarchs.exists():
             serializer = MonarchSerializer(monarchs, many=True)
             return Response({
-                'message': [f'In {monarch.start_year} to {monarch.end_year} has governed {monarch.name}. '
-                            f'Governed from {monarch.capital.name if monarch.capital else "No capital assigned"}.'
+                'message': [f'През {monarch.start_year} до {monarch.end_year} управлявавал {monarch.name} {monarch.family if monarch.family else ''}. '
+                            f'Управлявал от {monarch.capital.name if monarch.capital else 'Няма известна столица'}.'
                             for monarch in monarchs],
                 'data': serializer.data
             }, status=status.HTTP_200_OK)
-        return Response({'message': ['Bulgaria had no such monarch with this name.']}, status=status.HTTP_404_NOT_FOUND)
+        return Response({'message': ['България няма владетел с такова име.']}, status=status.HTTP_404_NOT_FOUND)
 
 class CapitalByYearView(APIView):
     @extend_schema(
-        description="Retrieve the capital of Bulgaria for a specific year.",
+        description='Търсене на столица на България по специфична година.',
         parameters=[
             OpenApiParameter(
                 'year',
                 OpenApiTypes.INT,
                 location=OpenApiParameter.QUERY,
-                description="Year to search for a capital"
+                description='Година за търсене по столица'
             )
         ],
         responses={
@@ -101,11 +101,11 @@ class CapitalByYearView(APIView):
                 name='CapitalByYearResponse',
                 fields={
                     'message': serializers.CharField(help_text="Response message"),
-                    'data': CapitalSerializer(), # Instance as it's a field
+                    'data': CapitalSerializer(),
                 }
             ),
-            400: {'description': "Invalid year provided"},
-            404: {'description': "No capital found for the year"}
+            400: {'description': 'Неправилно въведена година'},
+            404: {'description': 'Няма столица за този период'}
         }
     )
     def get(self, request):
@@ -116,22 +116,23 @@ class CapitalByYearView(APIView):
             if capital:
                 serializer = CapitalSerializer(capital)
                 return Response({
-                    'message': f'In {capital.start_year} to {capital.end_year} Bulgaria was governed in {capital.name}.',
+                    'message': f'През {capital.start_year} до {capital.end_year} България била управляване от {capital.name}.',
                     'data': serializer.data
                 }, status=status.HTTP_200_OK)
-            return Response({'message': 'There is no capital found for this year.'}, status=status.HTTP_404_NOT_FOUND)
+            return Response({'message': 'Няма известна столица за този период.'}, status=status.HTTP_404_NOT_FOUND)
         except (ValueError, TypeError):
-            return Response({'message': 'Please enter a valid year.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': 'Моля, въведи правилна година.'}, status=status.HTTP_400_BAD_REQUEST)
 
 class AddMonarchView(APIView):
     @extend_schema(
-        description="Add a new monarch to the database, assigning a capital from the same period.",
+        description='Добави нов владетел в базата данни, сато добавиш съответния род и столица да този период.',
         request={
             'application/json': {
                 'type': 'object',
-                'required': ['name', 'start_year', 'end_year'],
+                'required': ['name', 'family', 'start_year', 'end_year'],
                 'properties': {
                     'name': {'type': 'string', 'description': "Name of the monarch"},
+                    'family': {'type': 'string', 'description': "Family of the monarch"},
                     'start_year': {'type': 'integer', 'description': "Start year of the monarch's rule"},
                     'end_year': {'type': 'integer', 'description': "End year of the monarch's rule"}
                 }
@@ -145,12 +146,13 @@ class AddMonarchView(APIView):
                     'data': MonarchSerializer(), # Instance as it's a field
                 }
             ),
-            400: {'description': "Invalid input or monarch already exists for the period"},
-            404: {'description': "No suitable capital found for the period"}
+            400: {'description': 'Неправилно въвеждане или владетелят вече съществува за този период'},
+            404: {'description': 'Няма известна столица за този период'}
         }
     )
     def post(self, request):
         name = request.data.get('name')
+        family = request.data.get('family')
         start_year = request.data.get('start_year')
         end_year = request.data.get('end_year')
 
@@ -159,19 +161,19 @@ class AddMonarchView(APIView):
             end_year = int(end_year)
 
             if Monarch.objects.filter(start_year=start_year, end_year=end_year).exists():
-                return Response({'message': 'A monarch already exists for this period.'},
+                return Response({'message': 'Вече съществува владетел за този период.'},
                                 status=status.HTTP_400_BAD_REQUEST)
 
             capital = Capital.objects.filter(start_year__lte=start_year, end_year__gte=end_year).first()
             if not capital:
-                return Response({'message': 'No suitable capital found for this period.'},
+                return Response({'message': 'Няма подходяща столица за този период.'},
                                 status=status.HTTP_400_BAD_REQUEST)
 
-            monarch = Monarch.objects.create(name=name, start_year=start_year, end_year=end_year, capital=capital)
+            monarch = Monarch.objects.create(name=name, family=family, start_year=start_year, end_year=end_year, capital=capital)
             serializer = MonarchSerializer(monarch)
             return Response({
-                'message': f'Monarch {name} added for the period {start_year}-{end_year}. Assigned to capital {capital.name}.',
+                'message': f'Владетелят {name} {monarch.family if monarch.family else ''} е добавен за периода {start_year}-{end_year}. Със столиза на царуване {capital.name}.',
                 'data': serializer.data
             }, status=status.HTTP_201_CREATED)
         except ValueError:
-            return Response({'message': 'Please enter valid years.'}, status=status.HTTP_400_BAD_REQUEST)
+            return Response({'message': 'Моля, въведете правилна година.'}, status=status.HTTP_400_BAD_REQUEST)

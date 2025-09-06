@@ -6,9 +6,9 @@ class MonarchSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Monarch
-        fields = ['name', 'start_year', 'end_year', 'capital_name']
+        fields = ['name', 'family', 'start_year', 'end_year', 'capital_name']
 
 class CapitalSerializer(serializers.ModelSerializer):
     class Meta:
         model = Capital
-        fields = ['name', 'start_year', 'end_year']
+        fields = ['name', 'family', 'start_year', 'end_year']
