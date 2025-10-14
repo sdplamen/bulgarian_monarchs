@@ -3,13 +3,17 @@
 <html lang="bg">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <title>{% block title %}Bulgarian Rulers{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'style.css' %}">
 </head>
 <body>
     <div class="container">
-        <h1>Bulgarian Rulers</h1>
+    <section class="title">
+        <h1>Welcome to Bulgarian Rulers</h1>
+        <p>Explore the history of Bulgarian monarchs and capitals. Use the forms below to search for monarchs by year or name, find the capital for a specific year or add a new monarch,.</p>
+    </section>
         {% if messages %}
             <div class="messages">
                 {% for message in messages %}
